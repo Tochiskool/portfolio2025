@@ -4,7 +4,13 @@ const cors = require("cors");
 const ContactModel = require("./models/Contacts");
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: ["https:/deploy-mern-1whq.vercel.app/"],
+    method: ["POST", "GET"],
+    credentials: true,
+  })
+);
 app.use(express.json()); // used to pass our data from backend to frontend
 
 // Connect Database using drivers
