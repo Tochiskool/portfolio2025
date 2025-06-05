@@ -2,15 +2,10 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const ContactModel = require("./models/Contacts");
+const PORT = process.env.PORT || 3001;
 
 const app = express();
-app.use(
-  cors({
-    origin: ["https:/deploy-mern-1whq.vercel.app/"],
-    method: ["POST", "GET"],
-    credentials: true,
-  })
-);
+app.use(cors());
 app.use(express.json()); // used to pass our data from backend to frontend
 
 // Connect Database using drivers
@@ -39,6 +34,6 @@ app.post("/createContacts", async (req, res) => {
   res.json(contact);
 });
 //App listening
-app.listen(3001, () => {
-  console.log("Server is runnning");
+app.listen(PORT, () => {
+  console.log("Server is runnning on PORT: ", PORT);
 });
