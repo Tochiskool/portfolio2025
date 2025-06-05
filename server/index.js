@@ -10,10 +10,20 @@ app.use(express.json()); // used to pass our data from backend to frontend
 
 // Connect Database using drivers
 mongoose.connect(
-  "mongodb+srv://awemu:12345@acn-db.ncp7fq5.mongodb.net/acn_portfolio?retryWrites=true&w=majority&appName=ACN-DB"
+  "mongodb+srv://awemu:12345@acn-db.ncp7fq5.mongodb.net/acn_portfolio?retryWrites=true&w=majority&appName=ACN-DB",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    ssl: true,
+    tlsAllowInvalidCertificates: false,
+  }
 );
 
 // API to access user
+// Is the backend working
+app.get("/", (req, res) => {
+  res.send("Backend is working 🎉");
+});
 //get users
 app.get("/getContacts", async (req, res) => {
   try {
